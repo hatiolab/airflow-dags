@@ -51,6 +51,8 @@ with DAG(
             )
             process_task_list.append(process_task)
 
+        print(process_task)
+
     ready_task = PythonOperator(
         task_id="sync_data_preparation",
         python_callable=prepare_tasks,
