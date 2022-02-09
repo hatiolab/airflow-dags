@@ -39,17 +39,21 @@ with DAG(
             print(f"host_url: {host_url}")
             print(f"access_token: {access_token}")
 
-            from_date = datetime.today() - timedelta(days = 3)
+            from_date = datetime.today() - timedelta(days=3)
             to_date = datetime.now().isoformat()
             company_domain_id = Variable.get("COMPANY_DOMAIN_ID")
-            
+
             # TODO: change graphql mutation with variables to be run on schedule
             graphql_mutation = """
                 mutation syncAllMarketplaceOrder($companyDomainId: String!, $fromDate: String!, $toDate: String!) {
                     syncAllMarketplaceOrder(companyDomainId:$companyDomainId, fromDate: $fromDate, toDate: $toDate)
                 }
             """
-            vars = {"companyDomainId": company_domain_id, "fromDate": from_date, "toDate": to_date}
+            vars = {
+                "companyDomainId": company_domain_id,
+                "fromDate": from_date,
+                "toDate": to_date,
+            }
 
             # extract a domain name from the access token
             decoded_token = jwt.decode(
