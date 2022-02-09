@@ -7,14 +7,8 @@ from gql.transport.requests import RequestsHTTPTransport
 def sync_all_marketpalce_order(host_url, access_token, company_domain_id) -> None:
     try:
         # TODO: Fetch this information from Airflow Variables, so you need to set variables on airflow webserver
-        host_url = Variable.get("OPERATO_COREAPP_URL")
-        access_token = Variable.get("OPERATO_COREAPP_ACCESS_TOKEN")
-        print(f"host_url: {host_url}")
-        print(f"access_token: {access_token}")
-
         from_date = datetime.today() - timedelta(days=3)
         to_date = datetime.now().isoformat()
-        company_domain_id = Variable.get("COMPANY_DOMAIN_ID")
 
         # TODO: change graphql mutation with variables to be run on schedule
         graphql_mutation = """
