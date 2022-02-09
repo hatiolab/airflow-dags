@@ -46,6 +46,7 @@ with DAG(
             process_task = PythonOperator(
                 task_id=f"process_task_{idx}",
                 python_callable=process_something,
+                op_kwargs=val,
                 dag=dag,
             )
             process_task_list.append(process_task)
