@@ -43,6 +43,7 @@ with DAG(
         ]
 
         for idx, val in enumerate(company_info_list):
+            print(idx, val)
             process_task = PythonOperator(
                 task_id=f"process_task_{idx}",
                 python_callable=process_something,
