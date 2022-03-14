@@ -14,14 +14,14 @@ default_args = {
     "email_on_failure": False,
     "email_on_retry": False,
     "retries": 3,
-    "retry_delay": timedelta(minutes=10),
+    "retry_delay": timedelta(minutes=5),
 }
 
 # define a dag with a timedata-based schedule
 with DAG(
     "dag_sync_sellercraft_channel_product_mutation",
     default_args=default_args,
-    schedule_interval=None,
+    schedule_interval=timedelta(minutes=15),
     catchup=False,
 ) as dag:
 
@@ -50,7 +50,8 @@ with DAG(
             decoded_token = jwt.decode(
                 access_token, options={"verify_signature": False}
             )
-            things_factory_domain = decoded_token.get("domain").get("subdomain")
+            things_factory_domain = decoded_token.get(
+                "domain").get("subdomain")
 
             # set http url with headers(access token and things factory domain on multi-domain configuation)
             reqHeaders = {
