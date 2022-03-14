@@ -4,7 +4,9 @@ from gql import gql, Client as GqlClient
 from gql.transport.requests import RequestsHTTPTransport
 
 # python task functions
-def sync_all_marketpalce_order(host_url, access_token, company_domain_id) -> None:
+
+
+def sync_all_marketplace_order(host_url, access_token, company_domain_id) -> None:
     try:
         # TODO: Fetch this information from Airflow Variables, so you need to set variables on airflow webserver
         from_date = datetime.today() - timedelta(days=3)

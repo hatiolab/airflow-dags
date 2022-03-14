@@ -34,7 +34,7 @@ with DAG(
         access_token = Variable.get("OPERATO_COREAPP_ACCESS_TOKEN")
         company_domain_id = Variable.get("COMPANY_DOMAIN_ID")
 
-        sync_all_marketpalce_order(host_url, access_token, company_domain_id)
+        sync_all_marketplace_order(host_url, access_token, company_domain_id)
 
     task1 = PythonOperator(
         task_id="run_application_mutation",
