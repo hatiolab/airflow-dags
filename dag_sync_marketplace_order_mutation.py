@@ -85,6 +85,7 @@ with DAG(
 
         except Exception as ex:
             print("Exception: ", ex)
+            raise ValueError("Exception: ", ex)
 
     task1 = PythonOperator(
         task_id="run_application_mutation",

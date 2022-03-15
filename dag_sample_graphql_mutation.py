@@ -34,8 +34,8 @@ with DAG(
 
         try:
             # TODO: Fetch this information from Airflow Variables, so you need to set variables on airflow webserver
-            host_url = Variable.get("OPERATO_COREAPP_URL")
-            access_token = Variable.get("OPERATO_COREAPP_ACCESS_TOKEN")
+            host_url = Variable.get("AIDOOPR_COREAPP_URL")
+            access_token = Variable.get("AIDOOPR_COREAPP_ACCESS_TOKEN")
             print(f"host_url: {host_url}")
             print(f"access_token: {access_token}")
 
@@ -52,6 +52,7 @@ with DAG(
                 access_token, options={"verify_signature": False}
             )
             things_factory_domain = decoded_token.get("domain").get("subdomain")
+            print("things_factory_domain: ", things_factory_domain)
 
             # set http url with headers(access token and things factory domain on multi-domain configuation)
             reqHeaders = {
@@ -77,6 +78,7 @@ with DAG(
 
         except Exception as ex:
             print("Exception: ", ex)
+            raise ValueError("Exception: ", ex)
 
     task1 = PythonOperator(
         task_id="run_application_mutation",
