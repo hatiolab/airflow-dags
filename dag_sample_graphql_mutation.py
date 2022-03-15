@@ -41,11 +41,11 @@ with DAG(
 
             # TODO: change graphql mutation with variables to be run on schedule
             graphql_mutation = """
-                mutation robotArmGoHome($name: String!) {
-                    robotArmGoHome(name:$name)
-                    }
+                mutation($name: String!) {
+                finishCameraCalibrate(name: $name)
+                }
             """
-            vars = {"name": "robot01"}
+            vars = {"name": "camera01"}
 
             # extract a domain name from the access token
             decoded_token = jwt.decode(
