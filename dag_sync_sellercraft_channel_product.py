@@ -29,7 +29,7 @@ with DAG(
 ) as dag:
 
     # python task functions
-    def run_application_mutation() -> None:
+    def run() -> None:
 
         import jwt
         from gql import gql, Client as GqlClient
@@ -47,7 +47,7 @@ with DAG(
             raise ValueError("Exception: ", ex)
 
     task1 = PythonOperator(
-        task_id="run",
-        python_callable=run_application_mutation,
+        task_id="main",
+        python_callable=run,
         dag=dag,
     )
