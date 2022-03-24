@@ -5,7 +5,7 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.operators.bash_operator import BashOperator
 from airflow.models.variable import Variable
 
-from wms.mutations import sync_all_marketplace_order
+from wms.sync_all_market_place_channel_products import sync_all_marketplace_order
 
 
 # define default arguments for dags

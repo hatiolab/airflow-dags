@@ -4,8 +4,8 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.operators.bash_operator import BashOperator
 from airflow.models.variable import Variable
-from wms.sync_all_market_place_channel_products import (
-    sync_all_market_place_channel_products,
+from wms.sync_all_market_place_channel_orders import (
+    sync_all_market_place_channel_orders,
 )
 
 # define default arguments for dags
@@ -17,14 +17,14 @@ default_args = {
     "email_on_failure": False,
     "email_on_retry": False,
     "retries": 3,
-    "retry_delay": timedelta(minutes=5),
+    "retry_delay": timedelta(minutes=1),
 }
 
 # define a dag with a timedata-based schedule
 with DAG(
-    "dag_sync_sellercraft_channel_product_mutation",
+    "dag_sync_sellercraft_channel_order_mutation",
     default_args=default_args,
-    schedule_interval=timedelta(minutes=15),
+    schedule_interval=timedelta(minutes=3),
     catchup=False,
 ) as dag:
 
@@ -36,11 +36,16 @@ with DAG(
         from gql.transport.requests import RequestsHTTPTransport
 
         try:
+            # TODO: Fetch this information from Airflow Variables, so you need to set variables on airflow webserver
             host_url = Variable.get("OPERATO_COREAPP_URL")
             access_token = Variable.get("OPERATO_COREAPP_ACCESS_TOKEN")
 
-            result = sync_all_market_place_channel_products(host_url, access_token)
-            print("mutation execution result: ", result)
+            from_date = datetime.today() - timedelta(days=3)
+            to_date = datetime.now().isoformat()
+
+            sync_all_market_place_channel_orders(
+                host_url, access_token, from_date, to_date
+            )
 
         except Exception as ex:
             print("Exception: ", ex)
