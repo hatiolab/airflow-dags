@@ -24,7 +24,7 @@ default_args = {
 with DAG(
     "dag_sync_sellercraft_channel_product_mutation",
     default_args=default_args,
-    schedule_interval=timedelta(minutes=15),
+    schedule_interval=None,
     catchup=False,
 ) as dag:
 
