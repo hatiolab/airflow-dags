@@ -38,8 +38,9 @@ with DAG(
         try:
             host_url = Variable.get("OPERATO_COREAPP_URL")
             access_token = Variable.get("OPERATO_COREAPP_ACCESS_TOKEN")
+            customer_domain_id = Variable.get("DEV_2_SFTP_DOMAIN_ID")
 
-            result = sync_all_market_place_channel_products(host_url, access_token)
+            result = sync_all_sftp_orders(host_url, access_token, customer_domain_id)
             print("mutation execution result: ", result)
 
         except Exception as ex:
