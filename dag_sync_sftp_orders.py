@@ -40,6 +40,13 @@ with DAG(
             access_token = Variable.get("OPERATO_COREAPP_ACCESS_TOKEN")
             customer_domain_id = Variable.get("DEV_2_SFTP_DOMAIN_ID")
 
+            print("---------------------------------------------------------------")
+            print("[Main] decoded_token: ", decoded_token)
+            print("[Main] things_factory_domain: ", things_factory_domain)
+            print("[Main] customer_domain_id: ", customer_domain_id)
+            print("[Main] access_token: ", access_token)
+            print("---------------------------------------------------------------")    
+
             result = sync_all_sftp_orders(host_url, access_token, customer_domain_id)
             print("mutation execution result: ", result)
 
