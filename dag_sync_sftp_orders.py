@@ -41,8 +41,7 @@ with DAG(
             customer_domain_id = Variable.get("DEV_2_SFTP_DOMAIN_ID")
 
             print("---------------------------------------------------------------")
-            print("[Main] decoded_token: ", decoded_token)
-            print("[Main] things_factory_domain: ", things_factory_domain)
+            print("[Main] host_url: ", host_url)
             print("[Main] customer_domain_id: ", customer_domain_id)
             print("[Main] access_token: ", access_token)
             print("---------------------------------------------------------------")    
