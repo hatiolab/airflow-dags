@@ -20,6 +20,7 @@ def sync_all_sftp_orders(
     things_factory_domain = decoded_token.get("domain").get("subdomain")
 
     print("---------------------------------------------------------------")
+    print("[None] host_url: ", host_url)
     print("[None] decoded_token: ", decoded_token)
     print("[None] things_factory_domain: ", things_factory_domain)
     print("[None] customer_domain_id: ", customer_domain_id)
@@ -41,6 +42,7 @@ def sync_all_sftp_orders(
     things_factory_domain = decoded_token.get("domain").get("subdomain")
 
     print("---------------------------------------------------------------")
+    print("[Params] host_url: ", host_url)
     print("[Params] decoded_token: ", decoded_token)
     print("[Params] things_factory_domain: ", things_factory_domain)
     print("[Params] customer_domain_id: ", customer_domain_id)

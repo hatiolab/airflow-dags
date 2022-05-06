@@ -46,8 +46,7 @@ with DAG(
             print("[Main] access_token: ", access_token)
             print("---------------------------------------------------------------")    
 
-            result = sync_all_sftp_orders(host_url, access_token, customer_domain_id)
-            print("mutation execution result: ", result)
+            sync_all_sftp_orders(host_url, access_token, customer_domain_id)
 
         except Exception as ex:
             print("Exception: ", ex)
