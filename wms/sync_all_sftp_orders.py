@@ -68,5 +68,4 @@ def sync_all_sftp_orders(
 
     # execute the mutation
     m = gql(graphql_mutation)
-    client_result = client.execute(m, variable_values=vars)
-    print("mutation execution result: ", client_result)
+    client.execute(m, variable_values=vars)
