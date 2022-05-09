@@ -55,14 +55,14 @@ def sync_all_sftp_orders(
         "x-things-factory-domain": things_factory_domain,
     }
 
-    print("requestHeaders")
+    print("requestHeaders: ", reqHeaders)
 
     _transport = RequestsHTTPTransport(
         url=f"{host_url}/graphql",
         headers=reqHeaders,
         use_json=True,
     )
-    print("_transport")
+    print("_transport: ", _transport)
     # create grapql client
     client = GqlClient(
         transport=_transport,

@@ -21,13 +21,13 @@ def sync_all_market_place_channel_orders(
 
     # TODO: change graphql mutation with variables to be run on schedule
     graphql_mutation = """
-        mutation syncAllMarketplaceChannelOrders($fromDate: String!, $toDate: String!) {
-            syncAllMarketplaceChannelOrders(fromDate: $fromDate, toDate: $toDate)
+        mutation syncAllMarketplaceChannelOrders($fromCreatedDate: String!, $toCreatedDate: String!) {
+            syncAllMarketplaceChannelOrders(fromCreatedDate: $fromCreatedDate, toCreatedDate: $toCreatedDate)
         }
     """
     vars = {
-        "fromDate": from_date,
-        "toDate": to_date,
+        "fromCreatedDate": from_date,
+        "toCreatedDate": to_date,
     }
 
     # extract a domain name from the access token
