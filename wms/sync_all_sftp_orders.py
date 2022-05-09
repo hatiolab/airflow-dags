@@ -65,7 +65,9 @@ def sync_all_sftp_orders(
         transport=_transport,
         fetch_schema_from_transport=True,
     )
-
+    print("[Params] transport: ", JSON.stringify(_transport))
+    print("[Params] client: ", JSON.stringify(client))
+    print("[Params] graphql_mutation: ", graphql_mutation)
     # execute the mutation
     m = gql(graphql_mutation)
     client.execute(m, variable_values=vars)
