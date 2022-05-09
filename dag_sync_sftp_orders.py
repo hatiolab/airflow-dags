@@ -36,8 +36,8 @@ with DAG(
         from gql.transport.requests import RequestsHTTPTransport
 
         try:
-            host_url = Variable.get("OPERATO_COREAPP_URL")
-            access_token = Variable.get("OPERATO_COREAPP_ACCESS_TOKEN")
+            host_url = Variable.get("OPERATO_DEV_COREAPP_URL")
+            access_token = Variable.get("OPERATO_DEV_COREAPP_ACCESS_TOKEN")
             customer_domain_id = Variable.get("DEV_2_SFTP_DOMAIN_ID")
 
             print("---------------------------------------------------------------")
