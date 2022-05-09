@@ -54,20 +54,21 @@ def sync_all_sftp_orders(
         "authorization": access_token,
         "x-things-factory-domain": things_factory_domain,
     }
+
+    print("requestHeaders")
+
     _transport = RequestsHTTPTransport(
         url=f"{host_url}/graphql",
         headers=reqHeaders,
         use_json=True,
     )
-
+    print("_transport")
     # create grapql client
     client = GqlClient(
         transport=_transport,
         fetch_schema_from_transport=True,
     )
-    print("[Params] transport: ", JSON.stringify(_transport))
-    print("[Params] client: ", JSON.stringify(client))
-    print("[Params] graphql_mutation: ", graphql_mutation)
+    print("client")
     # execute the mutation
     m = gql(graphql_mutation)
     client.execute(m, variable_values=vars)
