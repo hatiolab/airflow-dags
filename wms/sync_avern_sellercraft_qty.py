@@ -6,12 +6,12 @@ from gql.transport.requests import RequestsHTTPTransport
 from airflow.models.variable import Variable
 
 
-def sync_all_sftp_orders(
-    host_url, access_token, customer_domain_id
+def sync_avern_sellercraft_qty(
+    host_url, access_token, sellercraft_id, fulfillment_center_id
 ) -> None:
     graphql_mutation = """
-        mutation syncSftpOrders {
-            syncSftpOrders
+        mutation syncProductsToSellercraft {
+            syncProductsToSellercraft
         }
     """
 
@@ -21,12 +21,13 @@ def sync_all_sftp_orders(
 
     # TODO: change graphql mutation with variables to be run on schedule
     graphql_mutation = """
-        mutation syncSftpOrders($customerDomainId: String!) {
-            syncSftpOrders(customerDomainId: $customerDomainId)
+        mutation syncProductsToSellercraft($sellercraftId: String!, $fulfillmentCenterId: String!) {
+            syncProductsToSellercraft(sellercraftId: $sellercraftId, fulfillmentCenterId: $fulfillmentCenterId)
         }
     """
     vars = {
-        "customerDomainId": customer_domain_id
+        "sellercraftId": sellercraft_id,
+        "fulfillmentCenterId": fulfillment_center_id
     }
 
     # extract a domain name from the access token
