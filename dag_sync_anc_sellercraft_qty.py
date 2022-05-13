@@ -4,8 +4,8 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.operators.bash_operator import BashOperator
 from airflow.models.variable import Variable
-from wms.sync_avern_sellercraft_qty import (
-    sync_avern_sellercraft_qty,
+from wms.sync_anc_sellercraft_qty import (
+    sync_anc_sellercraft_qty,
 )
 
 # define default arguments for dags
@@ -22,7 +22,7 @@ default_args = {
 
 # define a dag with a timedata-based schedule
 with DAG(
-    "dag_sync_avern_sellercraft_qty_mutation",
+    "dag_sync_anc_sellercraft_qty_mutation",
     default_args=default_args,
     schedule_interval=timedelta(minutes=30),
     catchup=False,
@@ -37,11 +37,11 @@ with DAG(
 
         try:
             host_url = Variable.get("OPERATO_COREAPP_URL")
-            access_token = Variable.get("OPERATO_AVERN_ACCESS_TOKEN")
-            sellercraft_id = Variable.get("OPERATO_AVERN_SELLERCRAFT_ID")
-            fulfillment_center_id = Variable.get("OPERATO_AVERN_FULFILLMENT_CENTER_ID")
+            access_token = Variable.get("OPERATO_ANC_ACCESS_TOKEN")
+            sellercraft_id = Variable.get("OPERATO_ANC_SELLERCRAFT_ID")
+            fulfillment_center_id = Variable.get("OPERATO_ANC_FULFILLMENT_CENTER_ID")
 
-            sync_avern_sellercraft_qty(host_url, access_token, sellercraft_id, fulfillment_center_id)
+            sync_anc_sellercraft_qty(host_url, access_token, sellercraft_id, fulfillment_center_id)
 
         except Exception as ex:
             print("Exception: ", ex)
