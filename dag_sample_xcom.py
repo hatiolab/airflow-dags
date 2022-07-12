@@ -60,7 +60,7 @@ with DAG(
     send_slack_message = SlackWebhookOperator(
         task_id="send_slack",
         http_conn_id="slack_webhook",
-        message="Hello slack",
+        message="Demo Dag is done...",
         dag=dag,
     )
 
