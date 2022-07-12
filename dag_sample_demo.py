@@ -106,4 +106,10 @@ with DAG(
         dag=dag,
     )
 
-    (xcom_test_1 >> [test_envs_1, bash_with_jinja] >> print_info >> send_slack_message)
+    (
+        xcom_test_1
+        >> xcom_test_2
+        >> [test_envs_1, bash_with_jinja]
+        >> print_info
+        >> send_slack_message
+    )
