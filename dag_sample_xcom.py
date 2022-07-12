@@ -3,6 +3,7 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 from airflow.models.variable import Variable
 from airflow.models.connection import Connection
+from airflow.providers.slack.operators.slack_webhook import SlackWebhookOperator
 
 # define default arguments for dags
 default_args = {
@@ -56,4 +57,11 @@ with DAG(
         dag=dag,
     )
 
-    t1 >> t2
+    send_slack_message = SlackWebhookOperator(
+        task_id="send_slack",
+        http_conn_id="slack_webhook",
+        message="Hello slack",
+        dag=dag,
+    )
+
+    t1 >> t2 >> send_slack_message
