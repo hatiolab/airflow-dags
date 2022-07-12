@@ -102,7 +102,7 @@ with DAG(
 
     print_info = BashOperator(
         task_id="print_info",
-        bash_command="echo {{ ds }}, run_id={{ run_id }} | dag_run={{ dag_run }}",
+        bash_command="echo 'run_id={{ run_id }} | dag_run={{ dag_run }}'",
         dag=dag,
     )
 
