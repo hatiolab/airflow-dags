@@ -4,7 +4,6 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime, timedelta
 from airflow.models.variable import Variable
 from airflow.models.connection import Connection
-from airflow.providers.slack.operators.slack_webhook import SlackWebhookOperator
 
 # define default arguments for dags
 default_args = {
@@ -27,7 +26,7 @@ with DAG(
 
     # the return value of this function will be moved into next task.
     # focus in 'provide_context=True' specifiied in one of task parameters
-    def test_1():
+    def test_1(**kwargs):
 
         time.sleep(90)
 
@@ -36,6 +35,5 @@ with DAG(
     t1 = PythonOperator(
         task_id="sleep_task_1",
         python_callable=test_1,
-        provide_context=False,
         dag=dag,
     )
