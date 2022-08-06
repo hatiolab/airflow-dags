@@ -28,7 +28,7 @@ with DAG(
     # focus in 'provide_context=True' specifiied in one of task parameters
     def test_1(**kwargs):
 
-        time.sleep(90)
+        time.sleep(1)
 
         return "sleep done.."
 
