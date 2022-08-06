@@ -28,6 +28,7 @@ with DAG(
     # focus in 'provide_context=True' specifiied in one of task parameters
     def test_1():
         print("called test_1")
+        time.sleep(90)
 
     t1 = PythonOperator(
         task_id="sleep_task_1",
