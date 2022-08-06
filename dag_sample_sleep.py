@@ -26,11 +26,8 @@ with DAG(
 
     # the return value of this function will be moved into next task.
     # focus in 'provide_context=True' specifiied in one of task parameters
-    def test_1(**kwargs):
-
-        time.sleep(1)
-
-        return "sleep done.."
+    def test_1():
+        print("called test_1")
 
     t1 = PythonOperator(
         task_id="sleep_task_1",
